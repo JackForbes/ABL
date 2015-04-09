@@ -1,0 +1,58 @@
+.tabs-container {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.job-content .tab-content {
+  background-color: #BDBDBD;
+}
+.job-content .tabpanel-container [role="tabpanel"] {
+  padding: 20px;
+}
+.job-content md-tab {
+  color: #90caf9 !important;
+}
+.job-content md-tab.active, .job-content md-tab:focus {
+  color: white !important;
+}
+.job-content .md-header .md-ripple {
+  border-color: #FFFF8D !important;
+}
+.job-content md-tabs-ink-bar {
+  background-color: #FFFF8D !important;
+}
+.job-dropdown-container {
+  margin: 20px 0;
+}
+.job-question {
+  background-color: #A5D6A7;
+  border: 1px solid #43A047;
+  padding: 5px;
+  margin-bottom: 5px;
+  margin-right: 10px;
+}
+.remove-question {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+.sortable-item-container {
+  margin: 5px 0;
+}
+.sortable-item {
+  background-color: #A5D6A7;
+  border: 1px solid #43A047;
+  padding: 5px;
+  font-weight: inherit;
+}
+.day-title {
+  text-transform: capitalize;
+}
+.checkbox-inline {
+  display: inline-block;
+}
+.question-node.dropdown {
+  color: rgba(0,0,0,.87);
+}
+.btn-toolbar-item {
+  margin-right: 10px;
+}

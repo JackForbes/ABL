@@ -1,0 +1,62 @@
+<div class="craigslist-container">
+
+  <h1 class="craigslist-title">Craigslist Ad</h1>
+  <h4 class="craigslist-store">{{ adJob.position }} at {{ brand.name }}</h4>
+  <h3>{{ store.location }}</h3>
+  <h3 class="craigslist-store">Store ID: {{ store.id }}</h3>
+  <h3 class="craigslist-store">Job ID: {{ adJob.id }}</h3>
+  <h3 class="craigslist-store">Job Salary: {{ adJob.salary }}</h3>
+
+  <div class="insert-container">
+    <h2>Edit Controls</h2>
+
+    <md-input-container>
+      <label>Company Slogan</label>
+      <input ng-model="adJob.slogan">
+    </md-input-container>
+
+    <md-input-container>
+      <label>Company Url</label>
+      <input ng-model="adJob.companyUrl">
+    </md-input-container>
+
+    <md-input-container>
+      <label>Company Logo Url</label>
+      <input ng-model="adJob.logoUrl">
+    </md-input-container>
+
+    <md-button class="md-raised md-primary" ng-click="copyHtml($event)">Copy HTML</md-button>
+
+  </div>
+
+  <div id="ad-html">
+
+    <br>
+    <font size="5"><a href="http://higherme.com/jobs/{{adJob.id}}" rel="nofollow">Apply Here!</a></font>
+    <br>
+
+    <br>
+    <h2>{{ adJob.slogan }}</h2>
+
+    <h3>Who Are We?</h3>
+    <font size="4">{{ adJob.about }}</font>
+    <br>
+
+    <br>
+    <h3>Who Are We Looking For?</h3>
+    <font size="4">{{ adJob.summary }}</font>
+    <br>
+    <font size="4">Further requirements include:</font>
+    <ul>
+      <li ng-repeat="requirement in adJob.requirements">{{ requirement }}</li>
+    </ul>
+
+    <br>
+    <font size="5"><a href="http://higherme.com/jobs/{{adJob.id}}" rel="nofollow">Apply Here!</a></font>
+    <br>
+    <br>
+    <a href="{{adJob.companyUrl}}" target="_blank" rel="nofollow"><img height="100" src="{{adJob.logoUrl}}" alt="Logo"></a>
+
+  </div>
+
+</div>

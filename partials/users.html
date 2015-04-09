@@ -1,0 +1,80 @@
+<md-dialog aria-label="Edit Users" class="users-dialog">
+  <md-content class="users-dialog-content">
+
+    <md-toolbar class="md-accent">
+      <h1 class="md-toolbar-tools">
+        <span>New User</span>
+      </h1>
+    </md-toolbar>
+
+    <md-list>
+      <md-item>
+        <md-item-content class="user-container">
+          <div class="md-tile-left">
+            <md-button aria-label="Create User" ng-click="createUser(newUser)" class="md-accent">
+              <i class="fa fa-plus fa-3x"></i>
+            </md-button>
+          </div>
+          <div class="md-tile-content user-bio-container">
+            <div layout="row" layout-align="space-around center">
+              <md-input-container class="new-user-field">
+                <label>First Name</label>
+                <input ng-model="newUser.firstname">
+              </md-input-container>
+              <md-input-container class="new-user-field">
+                <label>Last Name</label>
+                <input ng-model="newUser.lastname">
+              </md-input-container>
+            </div>
+            <md-input-container flex class="new-user-field">
+              <label>Email</label>
+              <input ng-model="newUser.email" type="email">
+            </md-input-container>
+            <md-input-container flex class="new-user-field">
+              <label>Stores</label>
+              <input ng-model="newUser.stores" ng-list>
+            </md-input-container>
+          </div>
+        </md-item-content>
+      </md-item>
+
+      <md-toolbar class="md-theme-light all-users-toolbar">
+        <h1 class="md-toolbar-tools">
+          <span>All Users</span>
+        </h1>
+      </md-toolbar>
+
+      <md-item ng-repeat="user in users | orderBy:'firstname'">
+        <md-item-content class="user-container">
+          <div class="md-tile-left">
+              <img ng-src="https://s3-us-west-1.amazonaws.com/higherme.com/user-profile-default.svg" class="user-photo" alt="https://s3-us-west-1.amazonaws.com/higherme.com/user-profile-default.svg">
+          </div>
+          <div class="md-tile-content user-bio-container">
+            <h3>{{ user.firstname }} {{ user.lastname }}</h3>
+            <h4>{{ user.email }}</h4>
+            <div flex>
+              <md-input-container flex>
+                <label>Stores</label>
+                <input ng-model="user.stores" ng-list>
+              </md-input-container>
+            </div>
+          </div>
+        </md-item-content>
+      </md-item>
+    </md-list>
+
+<!--     <md-grid-list md-cols="4" md-cols-sm="2" md-cols-md="4" md-cols-lg="8" md-row-height="1:1" md-gutter="8px" md-gutter-gt-sm="4px">
+      <md-grid-tile ng-repeat="user in users" md-rowspan="" md-colspan="">
+         <img ng-src="https://s3-us-west-1.amazonaws.com/higherme.com/user-profile-default.svg" class="user-photo" alt="https://s3-us-west-1.amazonaws.com/higherme.com/user-profile-default.svg">
+         <md-grid-tile-footer><h3>{{ user.firstname }}</h3></md-grid-tile-footer>
+     </md-grid-tile>
+    </md-grid-list> -->
+
+
+  </md-content>
+  <div class="md-actions" layout="row">
+    <md-button ng-click="hide()" class="md-primary">
+      Done
+    </md-button>
+  </div>
+</md-dialog>
