@@ -79,9 +79,6 @@ md-button.menuBtn > md-icon {
   margin: 3px !important;
   text-align: left;
 }
-.add-todo {
-  /*width: 60px;*/
-}
 .todo {
   font-family: 'Nova Mono';
   text-align: center;

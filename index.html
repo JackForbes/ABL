@@ -15,73 +15,72 @@
   </head>
   <body ng-app="myApp" layout="column" ng-controller="TodoController as ctrl">
 
-      <md-toolbar layout="row">
-        <md-button class="menu" hide-gt-sm ng-click="ctrl.toggleList()" aria-label="Show List">
-          <md-icon md-svg-icon="menu"></md-icon>
-        </md-button>
-        <h1>Material Todos</h1>
-      </md-toolbar>
+    <md-toolbar layout="row">
+      <md-button class="menu" hide-gt-sm ng-click="ctrl.toggleList()" aria-label="Show List">
+        <md-icon md-svg-icon="menu"></md-icon>
+      </md-button>
+      <h1>Material Todos</h1>
+    </md-toolbar>
 
-      <div flex layout="row">
+    <div flex layout="row">
 
-          <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-z2" md-component-id="left">
-            <md-list>
-              <md-item layout layout-align="start center" layout-padding>
-                <md-icon md-svg-icon="{{ ctrl.getAvatar() }}" class="avatar"></md-icon>
-                <md-input-container flex>
-                  <label>New List</label>
-                  <input ng-model="ctrl.newListName">
-                </md-input-container>
-                <div ng-show="ctrl.newListName">
-                    <md-button ng-click="ctrl.addList(ctrl.newListName)" aria-label="Add List">
-                        <md-icon md-svg-icon="add"></md-icon>
-                    </md-button>
-                </div>
-              </md-item>
-              <md-item ng-repeat="list in ctrl.lists">
-                  <md-button class="block" ng-click="ctrl.selectList(list)" ng-class="{'selected' : list === ctrl.selected }">
-                    <md-icon md-svg-icon="{{list.avatar}}" class="avatar"></md-icon>
-                    {{list.name}}
-                  </md-button>
-              </md-item>
-            </md-list>
-          </md-sidenav>
-
-          <md-content flex id="content">
-            <div layout layout-align="center center">
-                <md-icon md-svg-icon="{{ctrl.selected.avatar}}" class="avatar"></md-icon>
-                <h2>{{ctrl.selected.name}}</h2>
-            </div>
-            <div flex layout="column" layout-align="start center">
-                <md-list>
-                    <md-list-item class="md-whiteframe-z1 todo" layout layout-align="space-between center" layout-margin>
-                        <md-input-container class="new-todo" flex>
-                          <label>New Todo</label>
-                          <input ng-model="ctrl.newTodoTitle">
-                        </md-input-container>
-                        <md-button ng-click="ctrl.addTodo(ctrl.newTodoTitle)" class="add-todo" ng-show="ctrl.newTodoTitle" aria-label="Add Todo">
-                            <md-icon md-svg-icon="add"></md-icon>
-                        </md-button>
-                    </md-list-item>
-                    <md-list-item class="md-whiteframe-z1 todo" ng-repeat="todo in ctrl.selected.todos track by $index" layout layout-align="space-between center" layout-margin>
-                        <div class="todo-remove" ng-click="ctrl.removeTodo($index)" layout="column">
-                            <md-icon md-svg-icon="clear"></md-icon>
-                        </div>
-                        <h3 class="todo-title"> {{ todo.title }} </h3>
-                        <div class="todo-check" ng-class="{done: todo.done}" ng-click="todo.done = true" layout="column">
-                            <md-icon md-svg-icon="check"></md-icon>
-                        </div>
-                    </md-list-item>
-                </md-list>
-            </div>
-
-            <md-button class="share" md-no-ink ng-click="ctrl.share($event)" aria-label="Share">
-              <md-icon md-svg-icon="share"></md-icon>
+    <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-z2" md-component-id="left">
+      <md-list>
+        <md-item layout layout-align="start center" layout-padding>
+          <md-icon md-svg-icon="{{ ctrl.getAvatar() }}" class="avatar"></md-icon>
+          <md-input-container flex>
+            <label>New List</label>
+            <input ng-model="ctrl.newListName">
+          </md-input-container>
+          <div ng-show="ctrl.newListName">
+            <md-button ng-click="ctrl.addList(ctrl.newListName)" aria-label="Add List">
+              <md-icon md-svg-icon="add"></md-icon>
             </md-button>
-          </md-content>
+          </div>
+        </md-item>
+        <md-item ng-repeat="list in ctrl.lists">
+          <md-button class="block" ng-click="ctrl.selectList(list)" ng-class="{'selected' : list === ctrl.selected }">
+            <md-icon md-svg-icon="{{list.avatar}}" class="avatar"></md-icon>
+            {{list.name}}
+          </md-button>
+        </md-item>
+      </md-list>
+    </md-sidenav>
 
+    <md-content flex id="content">
+      <div layout layout-align="center center">
+          <md-icon md-svg-icon="{{ctrl.selected.avatar}}" class="avatar"></md-icon>
+          <h2>{{ctrl.selected.name}}</h2>
+      </div>
+      <div flex layout="column" layout-align="start center">
+        <md-list>
+          <md-list-item class="md-whiteframe-z1 todo" layout layout-align="space-between center" layout-margin>
+            <md-input-container class="new-todo" flex>
+              <label>New Todo</label>
+              <input ng-model="ctrl.newTodoTitle">
+            </md-input-container>
+            <md-button ng-click="ctrl.addTodo(ctrl.newTodoTitle)" class="add-todo" ng-show="ctrl.newTodoTitle" aria-label="Add Todo">
+              <md-icon md-svg-icon="add"></md-icon>
+            </md-button>
+          </md-list-item>
+          <md-list-item class="md-whiteframe-z1 todo" ng-repeat="todo in ctrl.selected.todos track by $index" layout layout-align="space-between center" layout-margin>
+            <div class="todo-remove" ng-click="ctrl.removeTodo($index)" layout="column">
+              <md-icon md-svg-icon="clear"></md-icon>
+            </div>
+            <h3 class="todo-title"> {{ todo.title }} </h3>
+            <div class="todo-check" ng-class="{done: todo.done}" ng-click="todo.done = true" layout="column">
+              <md-icon md-svg-icon="check"></md-icon>
+            </div>
+          </md-list-item>
+        </md-list>
       </div>
 
+      <md-button class="share" md-no-ink ng-click="ctrl.share($event)" aria-label="Share">
+        <md-icon md-svg-icon="share"></md-icon>
+      </md-button>
+    </md-content>
+
+    </div>
 
     <!-- Angular Material Dependencies -->
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.min.js"></script>
@@ -89,7 +88,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/0.8.3/angular-material.min.js"></script>
 
-    <!-- Other Dependencies -->
+    <!-- App Dependencies -->
     <script src="todo/Todo.js"></script>
     <script src="todo/TodoController.js"></script>
     <script src="todo/TodoService.js"></script>
