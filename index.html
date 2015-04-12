@@ -1,64 +1,99 @@
 <html lang="en">
   <head>
     <title>Adventure Bucket List</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Angular Material Design Todo App">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/0.8.3/angular-material.min.css">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="libraries/angular-ui-tree.min.css">
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="assets/app.css">
 
     <link rel="icon" type="image/png" href="http://adventurebucketlist.com/wp-content/themes/abl-theme/favicon-32x32.png" sizes="32x32">
   </head>
-  <body ng-app="myApp" layout="column" ng-controller="AppCtrl as ctrl">
+  <body ng-app="myApp" layout="column" ng-controller="TodoController as ctrl">
 
-    <md-toolbar layout="row">
-      <md-button class="menu" hide-gt-sm ng-click="ctrl.toggleList()" aria-label="Show User List">
-        <md-icon md-svg-icon="menu" ></md-icon>
-      </md-button>
-      <h1>Angular Material - Starter App</h1>
-    </md-toolbar>
+      <md-toolbar layout="row">
+        <md-button class="menu" hide-gt-sm ng-click="ctrl.toggleList()" aria-label="Show List">
+          <md-icon md-svg-icon="menu"></md-icon>
+        </md-button>
+        <h1>Material Todos</h1>
+      </md-toolbar>
 
-    <div flex layout="row">
+      <div flex layout="row">
 
-        <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-z2" md-component-id="left">
-          <md-list>
-            <md-item ng-repeat="it in ctrl.users">
-                <md-button ng-click="ctrl.selectUser(it)" ng-class="{'selected' : it === ctrl.selected }">
-                  <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon>
-                  {{it.name}}
-                </md-button>
-            </md-item>
-          </md-list>
-        </md-sidenav>
+          <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-z2" md-component-id="left">
+            <md-list>
+              <md-item layout layout-align="start center" layout-padding>
+                <md-icon md-svg-icon="{{ ctrl.getAvatar() }}" class="avatar"></md-icon>
+                <md-input-container flex>
+                  <label>New List</label>
+                  <input ng-model="ctrl.newListName">
+                </md-input-container>
+                <div ng-show="ctrl.newListName">
+                    <md-button ng-click="ctrl.addList(ctrl.newListName)" aria-label="Add List">
+                        <md-icon md-svg-icon="add"></md-icon>
+                    </md-button>
+                </div>
+              </md-item>
+              <md-item ng-repeat="list in ctrl.lists">
+                  <md-button class="block" ng-click="ctrl.selectList(list)" ng-class="{'selected' : list === ctrl.selected }">
+                    <md-icon md-svg-icon="{{list.avatar}}" class="avatar"></md-icon>
+                    {{list.name}}
+                  </md-button>
+              </md-item>
+            </md-list>
+          </md-sidenav>
 
-        <md-content flex id="content">
-          <md-icon md-svg-icon="{{ctrl.selected.avatar}}" class="avatar"></md-icon>
-          <h2>{{ctrl.selected.name}}</h2>
-          <p>{{ctrl.selected.content}}</p>
+          <md-content flex id="content">
+            <div layout layout-align="center center">
+                <md-icon md-svg-icon="{{ctrl.selected.avatar}}" class="avatar"></md-icon>
+                <h2>{{ctrl.selected.name}}</h2>
+            </div>
+            <div flex layout="column" layout-align="start center">
+                <md-list>
+                    <md-list-item class="md-whiteframe-z1 todo" layout layout-align="space-between center" layout-margin>
+                        <md-input-container class="new-todo" flex>
+                          <label>New Todo</label>
+                          <input ng-model="ctrl.newTodoTitle">
+                        </md-input-container>
+                        <md-button ng-click="ctrl.addTodo(ctrl.newTodoTitle)" class="add-todo" ng-show="ctrl.newTodoTitle" aria-label="Add Todo">
+                            <md-icon md-svg-icon="add"></md-icon>
+                        </md-button>
+                    </md-list-item>
+                    <md-list-item class="md-whiteframe-z1 todo" ng-repeat="todo in ctrl.selected.todos track by $index" layout layout-align="space-between center" layout-margin>
+                        <div class="todo-remove" ng-click="ctrl.removeTodo($index)" layout="column">
+                            <md-icon md-svg-icon="clear"></md-icon>
+                        </div>
+                        <h3 class="todo-title"> {{ todo.title }} </h3>
+                        <div class="todo-check" ng-class="{done: todo.done}" ng-click="todo.done = true" layout="column">
+                            <md-icon md-svg-icon="check"></md-icon>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </div>
 
-          <md-button class="share" md-no-ink ng-click="ctrl.share($event)" aria-label="Share">
-            <md-icon md-svg-icon="share"></md-icon>
-          </md-button>
-        </md-content>
+            <md-button class="share" md-no-ink ng-click="ctrl.share($event)" aria-label="Share">
+              <md-icon md-svg-icon="share"></md-icon>
+            </md-button>
+          </md-content>
 
-    </div>
+      </div>
+
 
     <!-- Angular Material Dependencies -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-route.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/0.8.3/angular-material.min.js"></script>
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
 
     <!-- Other Dependencies -->
-    <script src="libraries/angular-ui-tree.min.js"></script>
-    <script src="libraries/angular-autocomplete.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/controllers.js"></script>
-    <script src="js/directives.js"></script>
-    <script src="js/filters.js"></script>
-    <script src="js/services.js"></script>
+    <script src="todo/Todo.js"></script>
+    <script src="todo/TodoController.js"></script>
+    <script src="todo/TodoService.js"></script>
+    <script src="app.js"></script>
 
   </body>
 </html>

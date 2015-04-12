@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Nova+Mono);
+
 html, body {
   font-family: 'Roboto', sans-serif;
   font-size:14px;
@@ -7,7 +9,6 @@ html, body {
 }
 
 /* Toolbar area */
-
 .menu {
   background-color: transparent;
   border: none;
@@ -15,40 +16,30 @@ html, body {
   margin: 16px;
   width: 36px;
 }
-
 md-toolbar h1 {
   margin: auto;
 }
 
 /* Sidenav area */
-
-md-list .md-button {
+md-list .md-button.block {
   color: inherit;
   font-weight: 500;
   text-align: left;
   width: 100%;
 }
-  md-list .md-button.selected {
-    color: #03a9f4;
-  }
-
-  md-sidenav  md-list {
-    padding: 0px 0px 8px 0px;
-  }
-
-
-/* Primary content area */
-
-#content {
-  overflow: hidden;
+md-list .md-button.selected {
+  color: #03a9f4;
+}
+md-sidenav  md-list {
+  padding: 0px 0px 8px 0px;
 }
 
+/* Primary content area */
 #content  {
   padding-left: 40px;
   padding-right: 40px;
   padding-top: 5px;
 }
-
 #content .md-button.share {
   background-color: transparent;
   border: none;
@@ -59,49 +50,76 @@ md-list .md-button {
   top: 10px;
   right: 25px;
 }
-
 #content md-icon.avatar {
   margin-top: 10px;
 }
-
 #content .md-button.share > md-icon {
   fill:black;
   width:36px;
   height:36px;
 }
-
 md-button.menuBtn > md-icon {
   fill:white;
   width:24px;
   height:24px;
 }
-
 #content .md-button.share:active > md-icon {
   background-color: #dadada;
   border-radius: 75%;
   padding:4px;
   transition: all 100ms ease-out 30ms;
 }
-
 #content img {
   display: block;
   height: auto;
   max-width: 500px;
 }
+.new-todo {
+  padding: 2px;
+  margin: 3px !important;
+  text-align: left;
+}
+.add-todo {
+  /*width: 60px;*/
+}
+.todo {
+  font-family: 'Nova Mono';
+  text-align: center;
+  min-width: 250px;
+  max-width: 500px;
+}
+.todo-title {
+  margin: 1em;
+}
+.add-todo, .todo-check, .todo-remove {
+  height: 60px;
+  width: 60px;
+  cursor: pointer;
+}
+.todo-remove {
+  border-right: 1px solid #F44336;
+}
+.todo-remove:hover {
+  background: #F44336;
+}
+.todo-check {
+  border-left: 1px solid #4CAF50;
+}
+.todo-check.done {
+  background: #4CAF50;
+}
+.todo-check:not(.done):hover {
+  background: #A5D6A7;
+}
 
 /* Utils */
-
 .content-wrapper {
   position: relative;
 }
-
-/* Typography support coming in 0.8.0 */
-
 md-toolbar h1 {
   font-size: 1.250em;
   font-weight: 400;
 }
-
 .avatar {
   position: relative;
   width: 128px;
@@ -118,11 +136,9 @@ md-toolbar h1 {
   -moz-transform:scale(0.70);
 }
 
-
 md-bottom-sheet  md-icon {
   margin-right:20px;
 }
-
 span.name {
   font-weight: bold;
   font-size:1.1em;
